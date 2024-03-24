@@ -12,7 +12,7 @@ services:
     labels:
       - "com.centurylinklabs.watchtower.enable=false"
   node:
-    image: mscurtescu/ceremonyclient
+    image: byfish/ceremonyclient
     restart: always
     labels:
       - "com.centurylinklabs.watchtower.scope=quilibrium"
