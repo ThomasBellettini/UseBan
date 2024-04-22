@@ -36,7 +36,7 @@ services:
       retries: 3
       start_period: 1m
     volumes:
-      - ./node/node0.config:/root/.config
+      - ./node/node0/.config:/root/.config
     logging:
       driver: "json-file"
       options:
@@ -69,7 +69,7 @@ services:
       retries: 3
       start_period: 1m
     volumes:
-      - ./node/node1.config:/root/.config
+      - ./node/node1/.config:/root/.config
     logging:
       driver: "json-file"
       options:
@@ -102,7 +102,7 @@ services:
       retries: 3
       start_period: 1m
     volumes:
-      - ./node/node2.config:/root/.config
+      - ./node/node2/.config:/root/.config
     logging:
       driver: "json-file"
       options:
@@ -135,7 +135,7 @@ services:
       retries: 3
       start_period: 1m
     volumes:
-      - ./node/node3.config:/root/.config
+      - ./node/node3/.config:/root/.config
     logging:
       driver: "json-file"
       options:
