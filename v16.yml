@@ -1,0 +1,524 @@
+services:
+  watchtower:
+    image: containrrr/watchtower
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - WATCHTOWER_POLL_INTERVAL=900
+      - WATCHTOWER_SCOPE=quilibrium
+    labels:
+      - "com.centurylinklabs.watchtower.enable=false"
+  node0:
+    image: byfish/ceremonyclient
+    restart: always
+    labels:
+      - "com.centurylinklabs.watchtower.scope=quilibrium"
+    deploy:
+      resources:
+        limits:
+          memory: 32G
+        reservations:
+          memory: 16G
+    environment:
+      - DEFAULT_LISTEN_GRPC_MULTIADDR=/ip4/0.0.0.0/tcp/8337
+      - DEFAULT_LISTEN_REST_MULTIADDR=/ip4/0.0.0.0/tcp/8338
+      - DEFAULT_STATS_MULTIADDR=/dns/stats.quilibrium.com/tcp/443
+    ports:
+      - '8336:8336/udp' # p2p
+      - '8337:8337/tcp' # gRPC
+      - '8338:8338/tcp' # REST
+    healthcheck:
+      test: ["CMD", "node", "--peer-id"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 1m
+    volumes:
+      - ./node/node0/.config:/root/.config
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: 2048m
+  node1:
+    image: byfish/ceremonyclient
+    restart: always
+    labels:
+      - "com.centurylinklabs.watchtower.scope=quilibrium"
+    deploy:
+      resources:
+        limits:
+          memory: 32G
+        reservations:
+          memory: 16G
+    environment:
+      - DEFAULT_LISTEN_GRPC_MULTIADDR=/ip4/0.0.0.0/tcp/8347
+      - DEFAULT_LISTEN_REST_MULTIADDR=/ip4/0.0.0.0/tcp/8348
+      - DEFAULT_STATS_MULTIADDR=/dns/stats.quilibrium.com/tcp/443
+    ports:
+      - '8346:8346/udp' # p2p
+      - '8347:8347/tcp' # gRPC
+      - '8348:8348/tcp' # REST
+    healthcheck:
+      test: ["CMD", "node", "--peer-id"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 1m
+    volumes:
+      - ./node/node1/.config:/root/.config
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: 2048m
+  node2:
+    image: byfish/ceremonyclient
+    restart: always
+    labels:
+      - "com.centurylinklabs.watchtower.scope=quilibrium"
+    deploy:
+      resources:
+        limits:
+          memory: 32G
+        reservations:
+          memory: 16G
+    environment:
+      - DEFAULT_LISTEN_GRPC_MULTIADDR=/ip4/0.0.0.0/tcp/8357
+      - DEFAULT_LISTEN_REST_MULTIADDR=/ip4/0.0.0.0/tcp/8358
+      - DEFAULT_STATS_MULTIADDR=/dns/stats.quilibrium.com/tcp/443
+    ports:
+      - '8356:8356/udp' # p2p
+      - '8357:8357/tcp' # gRPC
+      - '8358:8358/tcp' # REST
+    healthcheck:
+      test: ["CMD", "node", "--peer-id"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 1m
+    volumes:
+      - ./node/node2/.config:/root/.config
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: 2048m
+  node3:
+    image: byfish/ceremonyclient
+    restart: always
+    labels:
+      - "com.centurylinklabs.watchtower.scope=quilibrium"
+    deploy:
+      resources:
+        limits:
+          memory: 32G
+        reservations:
+          memory: 16G
+    environment:
+      - DEFAULT_LISTEN_GRPC_MULTIADDR=/ip4/0.0.0.0/tcp/8367
+      - DEFAULT_LISTEN_REST_MULTIADDR=/ip4/0.0.0.0/tcp/8368
+      - DEFAULT_STATS_MULTIADDR=/dns/stats.quilibrium.com/tcp/443
+    ports:
+      - '8366:8366/udp' # p2p
+      - '8367:8367/tcp' # gRPC
+      - '8368:8368/tcp' # REST
+    healthcheck:
+      test: ["CMD", "node", "--peer-id"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 1m
+    volumes:
+      - ./node/node3/.config:/root/.config
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: 2048m
+  node4:
+    image: byfish/ceremonyclient
+    restart: always
+    labels:
+      - "com.centurylinklabs.watchtower.scope=quilibrium"
+    deploy:
+      resources:
+        limits:
+          memory: 32G
+        reservations:
+          memory: 16G
+    environment:
+      - DEFAULT_LISTEN_GRPC_MULTIADDR=/ip4/0.0.0.0/tcp/8377
+      - DEFAULT_LISTEN_REST_MULTIADDR=/ip4/0.0.0.0/tcp/8378
+      - DEFAULT_STATS_MULTIADDR=/dns/stats.quilibrium.com/tcp/443
+    ports:
+      - '8376:8376/udp' # p2p
+      - '8377:8377/tcp' # gRPC
+      - '8378:8378/tcp' # REST
+    healthcheck:
+      test: ["CMD", "node", "--peer-id"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 1m
+    volumes:
+      - ./node/node4/.config:/root/.config
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: 2048m
+  node5:
+    image: byfish/ceremonyclient
+    restart: always
+    labels:
+      - "com.centurylinklabs.watchtower.scope=quilibrium"
+    deploy:
+      resources:
+        limits:
+          memory: 32G
+        reservations:
+          memory: 16G
+    environment:
+      - DEFAULT_LISTEN_GRPC_MULTIADDR=/ip4/0.0.0.0/tcp/8387
+      - DEFAULT_LISTEN_REST_MULTIADDR=/ip4/0.0.0.0/tcp/8388
+      - DEFAULT_STATS_MULTIADDR=/dns/stats.quilibrium.com/tcp/443
+    ports:
+      - '8386:8386/udp' # p2p
+      - '8387:8387/tcp' # gRPC
+      - '8388:8388/tcp' # REST
+    healthcheck:
+      test: ["CMD", "node", "--peer-id"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 1m
+    volumes:
+      - ./node/node5/.config:/root/.config
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: 2048m
+  node6:
+    image: byfish/ceremonyclient
+    restart: always
+    labels:
+      - "com.centurylinklabs.watchtower.scope=quilibrium"
+    deploy:
+      resources:
+        limits:
+          memory: 32G
+        reservations:
+          memory: 16G
+    environment:
+      - DEFAULT_LISTEN_GRPC_MULTIADDR=/ip4/0.0.0.0/tcp/8397
+      - DEFAULT_LISTEN_REST_MULTIADDR=/ip4/0.0.0.0/tcp/8398
+      - DEFAULT_STATS_MULTIADDR=/dns/stats.quilibrium.com/tcp/443
+    ports:
+      - '8396:8396/udp' # p2p
+      - '8397:8397/tcp' # gRPC
+      - '8398:8398/tcp' # REST
+    healthcheck:
+      test: ["CMD", "node", "--peer-id"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 1m
+    volumes:
+      - ./node/node6/.config:/root/.config
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: 2048m
+  node7:
+    image: byfish/ceremonyclient
+    restart: always
+    labels:
+      - "com.centurylinklabs.watchtower.scope=quilibrium"
+    deploy:
+      resources:
+        limits:
+          memory: 32G
+        reservations:
+          memory: 16G
+    environment:
+      - DEFAULT_LISTEN_GRPC_MULTIADDR=/ip4/0.0.0.0/tcp/8317
+      - DEFAULT_LISTEN_REST_MULTIADDR=/ip4/0.0.0.0/tcp/8318
+      - DEFAULT_STATS_MULTIADDR=/dns/stats.quilibrium.com/tcp/443
+    ports:
+      - '8316:8316/udp' # p2p
+      - '8317:8317/tcp' # gRPC
+      - '8318:8318/tcp' # REST
+    healthcheck:
+      test: ["CMD", "node", "--peer-id"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 1m
+    volumes:
+      - ./node/node7/.config:/root/.config
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: 2048m
+
+  node8:
+    image: byfish/ceremonyclient
+    restart: always
+    labels:
+      - "com.centurylinklabs.watchtower.scope=quilibrium"
+    deploy:
+      resources:
+        limits:
+          memory: 32G
+        reservations:
+          memory: 16G
+    environment:
+      - DEFAULT_LISTEN_GRPC_MULTIADDR=/ip4/0.0.0.0/tcp/8237
+      - DEFAULT_LISTEN_REST_MULTIADDR=/ip4/0.0.0.0/tcp/8238
+      - DEFAULT_STATS_MULTIADDR=/dns/stats.quilibrium.com/tcp/443
+    ports:
+      - '8236:8236/udp' # p2p
+      - '8237:8237/tcp' # gRPC
+      - '8238:8238/tcp' # REST
+    healthcheck:
+      test: ["CMD", "node", "--peer-id"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 1m
+    volumes:
+      - ./node/node8/.config:/root/.config
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: 2048m
+  node9:
+    image: byfish/ceremonyclient
+    restart: always
+    labels:
+      - "com.centurylinklabs.watchtower.scope=quilibrium"
+    deploy:
+      resources:
+        limits:
+          memory: 32G
+        reservations:
+          memory: 16G
+    environment:
+      - DEFAULT_LISTEN_GRPC_MULTIADDR=/ip4/0.0.0.0/tcp/8247
+      - DEFAULT_LISTEN_REST_MULTIADDR=/ip4/0.0.0.0/tcp/8248
+      - DEFAULT_STATS_MULTIADDR=/dns/stats.quilibrium.com/tcp/443
+    ports:
+      - '8246:8246/udp' # p2p
+      - '8247:8247/tcp' # gRPC
+      - '8248:8248/tcp' # REST
+    healthcheck:
+      test: ["CMD", "node", "--peer-id"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 1m
+    volumes:
+      - ./node/node9/.config:/root/.config
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: 2048m
+  node10:
+    image: byfish/ceremonyclient
+    restart: always
+    labels:
+      - "com.centurylinklabs.watchtower.scope=quilibrium"
+    deploy:
+      resources:
+        limits:
+          memory: 32G
+        reservations:
+          memory: 16G
+    environment:
+      - DEFAULT_LISTEN_GRPC_MULTIADDR=/ip4/0.0.0.0/tcp/8257
+      - DEFAULT_LISTEN_REST_MULTIADDR=/ip4/0.0.0.0/tcp/8258
+      - DEFAULT_STATS_MULTIADDR=/dns/stats.quilibrium.com/tcp/443
+    ports:
+      - '8256:8256/udp' # p2p
+      - '8257:8257/tcp' # gRPC
+      - '8258:8258/tcp' # REST
+    healthcheck:
+      test: ["CMD", "node", "--peer-id"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 1m
+    volumes:
+      - ./node/node10/.config:/root/.config
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: 2048m
+  node11:
+    image: byfish/ceremonyclient
+    restart: always
+    labels:
+      - "com.centurylinklabs.watchtower.scope=quilibrium"
+    deploy:
+      resources:
+        limits:
+          memory: 32G
+        reservations:
+          memory: 16G
+    environment:
+      - DEFAULT_LISTEN_GRPC_MULTIADDR=/ip4/0.0.0.0/tcp/8267
+      - DEFAULT_LISTEN_REST_MULTIADDR=/ip4/0.0.0.0/tcp/8268
+      - DEFAULT_STATS_MULTIADDR=/dns/stats.quilibrium.com/tcp/443
+    ports:
+      - '8266:8266/udp' # p2p
+      - '8267:8267/tcp' # gRPC
+      - '8268:8268/tcp' # REST
+    healthcheck:
+      test: ["CMD", "node", "--peer-id"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 1m
+    volumes:
+      - ./node/node11/.config:/root/.config
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: 2048m
+  node12:
+    image: byfish/ceremonyclient
+    restart: always
+    labels:
+      - "com.centurylinklabs.watchtower.scope=quilibrium"
+    deploy:
+      resources:
+        limits:
+          memory: 32G
+        reservations:
+          memory: 16G
+    environment:
+      - DEFAULT_LISTEN_GRPC_MULTIADDR=/ip4/0.0.0.0/tcp/8277
+      - DEFAULT_LISTEN_REST_MULTIADDR=/ip4/0.0.0.0/tcp/8278
+      - DEFAULT_STATS_MULTIADDR=/dns/stats.quilibrium.com/tcp/443
+    ports:
+      - '8276:8276/udp' # p2p
+      - '8277:8277/tcp' # gRPC
+      - '8278:8278/tcp' # REST
+    healthcheck:
+      test: ["CMD", "node", "--peer-id"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 1m
+    volumes:
+      - ./node/node12/.config:/root/.config
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: 2048m
+  node13:
+    image: byfish/ceremonyclient
+    restart: always
+    labels:
+      - "com.centurylinklabs.watchtower.scope=quilibrium"
+    deploy:
+      resources:
+        limits:
+          memory: 32G
+        reservations:
+          memory: 16G
+    environment:
+      - DEFAULT_LISTEN_GRPC_MULTIADDR=/ip4/0.0.0.0/tcp/8287
+      - DEFAULT_LISTEN_REST_MULTIADDR=/ip4/0.0.0.0/tcp/8288
+      - DEFAULT_STATS_MULTIADDR=/dns/stats.quilibrium.com/tcp/443
+    ports:
+      - '8286:8286/udp' # p2p
+      - '8287:8287/tcp' # gRPC
+      - '8288:8288/tcp' # REST
+    healthcheck:
+      test: ["CMD", "node", "--peer-id"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 1m
+    volumes:
+      - ./node/node13/.config:/root/.config
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: 2048m
+  node14:
+    image: byfish/ceremonyclient
+    restart: always
+    labels:
+      - "com.centurylinklabs.watchtower.scope=quilibrium"
+    deploy:
+      resources:
+        limits:
+          memory: 32G
+        reservations:
+          memory: 16G
+    environment:
+      - DEFAULT_LISTEN_GRPC_MULTIADDR=/ip4/0.0.0.0/tcp/8297
+      - DEFAULT_LISTEN_REST_MULTIADDR=/ip4/0.0.0.0/tcp/8298
+      - DEFAULT_STATS_MULTIADDR=/dns/stats.quilibrium.com/tcp/443
+    ports:
+      - '8296:8296/udp' # p2p
+      - '8297:8297/tcp' # gRPC
+      - '8298:8298/tcp' # REST
+    healthcheck:
+      test: ["CMD", "node", "--peer-id"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 1m
+    volumes:
+      - ./node/node14/.config:/root/.config
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: 2048m
+  node15:
+    image: byfish/ceremonyclient
+    restart: always
+    labels:
+      - "com.centurylinklabs.watchtower.scope=quilibrium"
+    deploy:
+      resources:
+        limits:
+          memory: 32G
+        reservations:
+          memory: 16G
+    environment:
+      - DEFAULT_LISTEN_GRPC_MULTIADDR=/ip4/0.0.0.0/tcp/8217
+      - DEFAULT_LISTEN_REST_MULTIADDR=/ip4/0.0.0.0/tcp/8218
+      - DEFAULT_STATS_MULTIADDR=/dns/stats.quilibrium.com/tcp/443
+    ports:
+      - '8216:8216/udp' # p2p
+      - '8217:8217/tcp' # gRPC
+      - '8218:8218/tcp' # REST
+    healthcheck:
+      test: ["CMD", "node", "--peer-id"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 1m
+    volumes:
+      - ./node/node15/.config:/root/.config
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: 2048m
