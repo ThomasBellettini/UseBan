@@ -163,7 +163,7 @@ node4:
       retries: 3
       start_period: 1m
     volumes:
-      - ./node/node7/.config:/root/.config
+      - ./node/node4/.config:/root/.config
     logging:
       driver: "json-file"
       options:
