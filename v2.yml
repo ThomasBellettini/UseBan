@@ -137,7 +137,7 @@ services:
       options:
         max-file: "5"
         max-size: 2048m
-node4:
+  node4:
     image: byfish/ceremonyclient
     restart: always
     labels:
@@ -169,7 +169,7 @@ node4:
       options:
         max-file: "5"
         max-size: 2048m
-node5:
+  node5:
     image: byfish/ceremonyclient
     restart: always
     labels:
@@ -201,7 +201,7 @@ node5:
       options:
         max-file: "5"
         max-size: 2048m
-node6:
+  node6:
     image: byfish/ceremonyclient
     restart: always
     labels:
@@ -233,7 +233,7 @@ node6:
       options:
         max-file: "5"
         max-size: 2048m
-node7:
+  node7:
     image: byfish/ceremonyclient
     restart: always
     labels:
