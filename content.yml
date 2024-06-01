@@ -37,7 +37,7 @@ services:
       retries: 3
       start_period: 1m
     volumes:
-      - ./.config:/root/.config
+      - ./node/singlenode/.config:/root/.config
     logging:
       driver: "json-file"
       options:
